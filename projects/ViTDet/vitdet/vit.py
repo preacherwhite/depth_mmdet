@@ -8,8 +8,7 @@ from mmcv.cnn import build_activation_layer, build_norm_layer
 from mmcv.cnn.bricks import DropPath
 from mmengine.logging import MMLogger
 from mmengine.model import BaseModule
-from mmengine.runner.checkpoint import CheckpointLoader
-
+from mmengine.runner.checkpoint import CheckpointLoader,load_from_local
 from mmdet.registry import MODELS
 
 
@@ -427,8 +426,9 @@ class ViT(BaseModule):
                                                   f'specify `Pretrained` in ' \
                                                   f'`init_cfg` in ' \
                                                   f'{self.__class__.__name__} '
-            ckpt = CheckpointLoader.load_checkpoint(
-                self.init_cfg.checkpoint, logger=logger, map_location='cpu')
+            # ckpt = CheckpointLoader.load_checkpoint(
+            #     self.init_cfg.checkpoint, logger=logger, map_location='cpu')
+            ckpt = load_from_local(self.init_cfg.checkpoint,map_location='cpu')
             if 'model' in ckpt:
                 _state_dict = ckpt['model']
             self.load_state_dict(_state_dict, False)

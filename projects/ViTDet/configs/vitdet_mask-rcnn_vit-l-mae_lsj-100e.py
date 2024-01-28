@@ -40,7 +40,7 @@ model = dict(
         ],
         use_rel_pos=True,
         init_cfg=dict(
-            type='Pretrained', checkpoint='dpt_large_vit_model.pt')),
+            type='Pretrained', checkpoint='~/dpt_large_vit_model.pt')),
     neck=dict(
         _delete_=True,
         type='SimpleFPN',
