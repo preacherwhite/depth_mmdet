@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from mmdet.registry import MODELS
 
 from .base_model import BaseModel
 from .blocks import (
@@ -22,16 +23,18 @@ def _make_fusion_block(features, use_bn):
         align_corners=True,
     )
 
+
+@MODELS.register_module()
 class DPT_Encoder(BaseModel):
+
     def __init__(
-        self,
-        head,
-        features=256,
-        backbone="vitb_rn50_384",
-        readout="project",
-        channels_last=False,
-        use_bn=False,
-        enable_attention_hooks=False,
+            self,
+            path,
+            features=256,# Features here are for initializing the scratch network, which is irrelavent in our case
+            backbone="vitb_rn50_384",
+            readout="project",
+            channels_last=False,
+            enable_attention_hooks=False,
     ):
 
         super(DPT_Encoder, self).__init__()
@@ -56,38 +59,31 @@ class DPT_Encoder(BaseModel):
             use_readout=readout,
             enable_attention_hooks=enable_attention_hooks,
         )
+        if path is not None:
+            self.load(path)
+
     def forward(self, x):
         if self.channels_last == True:
             x.contiguous(memory_format=torch.channels_last)
 
         layer_1, layer_2, layer_3, layer_4 = forward_vit(self.pretrained, x)
 
-        layer_1_rn = self.scratch.layer1_rn(layer_1)
-        layer_2_rn = self.scratch.layer2_rn(layer_2)
-        layer_3_rn = self.scratch.layer3_rn(layer_3)
-        layer_4_rn = self.scratch.layer4_rn(layer_4)
+        out = [layer_1, layer_2, layer_3, layer_4]
 
-        path_4 = self.scratch.refinenet4(layer_4_rn)
-        path_3 = self.scratch.refinenet3(path_4, layer_3_rn)
-        path_2 = self.scratch.refinenet2(path_3, layer_2_rn)
-        path_1 = self.scratch.refinenet1(path_2, layer_1_rn)
+        return tuple(out)
 
-        out = self.scratch.output_conv(path_1)
-
-        return out
 
 class DPT(BaseModel):
     def __init__(
-        self,
-        head,
-        features=256,
-        backbone="vitb_rn50_384",
-        readout="project",
-        channels_last=False,
-        use_bn=False,
-        enable_attention_hooks=False,
+            self,
+            head,
+            features=256,
+            backbone="vitb_rn50_384",
+            readout="project",
+            channels_last=False,
+            use_bn=False,
+            enable_attention_hooks=False,
     ):
-
         super(DPT, self).__init__()
 
         self.channels_last = channels_last
@@ -141,7 +137,7 @@ class DPT(BaseModel):
 
 class DPTDepthModel(DPT):
     def __init__(
-        self, path=None, non_negative=True, scale=1.0, shift=0.0, invert=False, **kwargs
+            self, path=None, non_negative=True, scale=1.0, shift=0.0, invert=False, **kwargs
     ):
         features = kwargs["features"] if "features" in kwargs else 256
 
@@ -178,7 +174,6 @@ class DPTDepthModel(DPT):
 
 class DPTSegmentationModel(DPT):
     def __init__(self, num_classes, path=None, **kwargs):
-
         features = kwargs["features"] if "features" in kwargs else 256
 
         kwargs["use_bn"] = True
