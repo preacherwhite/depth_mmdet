@@ -344,7 +344,6 @@ class PatchEmbed(nn.Module):
 @MODELS.register_module()
 class ViT(BaseModule):
     """Vision Transformer with support for patch or hybrid CNN input stage."""
-
     def __init__(self,
                  img_size=1024,
                  patch_size=16,
