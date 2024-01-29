@@ -1,7 +1,7 @@
 _base_ = [
-    '~/depth_mmdet/configs/_base_/models/cascade-mask-rcnn_r50_fpn.py',
-    '~/depth_mmdet/configs/_base_/datasets/coco_instance.py',
-    '~/depth_mmdet/configs/_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
+    '../../../configs/_base_/models/cascade-mask-rcnn_r50_fpn.py',
+    '../../../configs/_base_/datasets/coco_instance.py',
+    '../../../configs/_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
 ]
 model = dict(
     type='CascadeRCNN',
