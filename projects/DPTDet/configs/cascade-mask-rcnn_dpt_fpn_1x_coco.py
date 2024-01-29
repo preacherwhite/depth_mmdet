@@ -3,6 +3,10 @@ _base_ = [
     '../../../configs/_base_/datasets/coco_instance.py',
     '../../../configs/_base_/schedules/schedule_1x.py', '../../../configs/_base_/default_runtime.py'
 ]
+
+custom_imports = dict(
+    imports=['projects.DPTDet.dpt'],
+    allow_failed_imports=False)
 model = dict(
     type='CascadeRCNN',
     data_preprocessor=dict(
