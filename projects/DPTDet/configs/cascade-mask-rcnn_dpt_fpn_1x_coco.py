@@ -1,7 +1,9 @@
 _base_ = [
     #'../../../configs/_base_/models/cascade-mask-rcnn_r50_fpn.py',
-    './lsj-100e_coco-instance-dpt.py',
-    #'../../../configs/_base_/schedules/schedule_1x.py',
+    #'./lsj-100e_coco-instance-dpt.py',
+    '../../../configs/_base_/datasets/coco_instance.py',
+    '../../../configs/_base_/schedules/schedule_1x.py',
+    '../../../configs/_base_/default_runtime.py'
 ]
 
 custom_imports = dict(
