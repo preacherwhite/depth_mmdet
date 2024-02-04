@@ -25,7 +25,6 @@ from mmengine.model.base_module import BaseModule
 from mmengine.runner.checkpoint import _load_checkpoint, load_state_dict
 from mmengine.dist.utils import get_dist_info
 # from mmcv_custom import load_checkpoint
-from mmdet.utils import get_root_logger
 from mmdet.registry import MODELS
 from ..utils.ckpt_convert import convert_openai_clip, convert_sam
 
@@ -641,9 +640,8 @@ class ViTdet(nn.Module):
 
         if isinstance(pretrained, str):
             self.apply(_init_weights)
-            logger = get_root_logger()
             print(f"load from {pretrained}")
-            load_checkpoint(self, pretrained, strict=False, logger=logger)
+            load_checkpoint(self, pretrained, strict=False)
         elif pretrained is None:
             self.apply(_init_weights)
         else:
