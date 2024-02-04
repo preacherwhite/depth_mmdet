@@ -2,7 +2,7 @@ _base_ = [
     './lsj_coco_instance_r1024.py',
     '../_base_/schedules/schedule_1x.py'
 ]
-
+custom_imports = dict(imports=['mmdet.models.backbones.vitdet'])
 norm_cfg = dict(type='LN', requires_grad=True)
 # Use MMSyncBN that handles empty tensor in head. It can be changed to
 # SyncBN after https://github.com/pytorch/pytorch/issues/36530 is fixed
