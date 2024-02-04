@@ -21,8 +21,8 @@ train_pipeline = [
     dict(
         type='Resize',
         scale=image_size,
-        ratio_range=(0.1, 2.0),
-        multiscale_mode='range',
+        #ratio_range=(0.1, 2.0),
+        #multiscale_mode='range',
         keep_ratio=True),
     dict(
         type='RandomCrop',
