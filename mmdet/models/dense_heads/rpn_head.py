@@ -64,6 +64,7 @@ class RPNHead(AnchorHead):
                         in_channels,
                         self.feat_channels,
                         3,
+                        norm_cfg=self.norm_cfg,
                         padding=1,
                         inplace=False))
             self.rpn_conv = nn.Sequential(*rpn_convs)
