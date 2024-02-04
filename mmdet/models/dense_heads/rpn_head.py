@@ -38,6 +38,7 @@ class RPNHead(AnchorHead):
                  init_cfg: MultiConfig = dict(
                      type='Normal', layer='Conv2d', std=0.01),
                  num_convs: int = 1,
+                 norm_cfg=None,
                  **kwargs) -> None:
         self.num_convs = num_convs
         assert num_classes == 1
@@ -46,6 +47,7 @@ class RPNHead(AnchorHead):
             in_channels=in_channels,
             init_cfg=init_cfg,
             **kwargs)
+        self.norm_cfg = norm_cfg
 
     def _init_layers(self) -> None:
         """Initialize layers of the head."""
