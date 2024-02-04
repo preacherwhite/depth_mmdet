@@ -41,13 +41,14 @@ class RPNHead(AnchorHead):
                  norm_cfg=None,
                  **kwargs) -> None:
         self.num_convs = num_convs
+        self.norm_cfg = norm_cfg
         assert num_classes == 1
         super().__init__(
             num_classes=num_classes,
             in_channels=in_channels,
             init_cfg=init_cfg,
             **kwargs)
-        self.norm_cfg = norm_cfg
+
 
     def _init_layers(self) -> None:
         """Initialize layers of the head."""
