@@ -1,6 +1,6 @@
 _base_ = [
     './lsj_coco_instance_r1024.py',
-    '../../_base_/schedules/schedule_1x.py'
+    '../_base_/schedules/schedule_1x.py'
 ]
 
 norm_cfg = dict(type='LN', requires_grad=True)
