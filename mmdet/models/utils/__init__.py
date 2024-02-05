@@ -20,6 +20,7 @@ from .point_sample import (get_uncertain_point_coords_with_randomness,
                            get_uncertainty)
 from .vlfuse_helper import BertEncoderLayer, VLFuse, permute_and_flatten
 from .wbf import weighted_boxes_fusion
+from .convModule_norm import ConvModule_Norm
 
 __all__ = [
     'gaussian_radius', 'gen_gaussian_target', 'make_divisible',

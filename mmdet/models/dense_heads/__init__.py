@@ -40,6 +40,7 @@ from .reppoints_head import RepPointsHead
 from .retina_head import RetinaHead
 from .retina_sepbn_head import RetinaSepBNHead
 from .rpn_head import RPNHead
+from .rpn_head_vitdet import RPNHead_vitdet
 from .rtmdet_head import RTMDetHead, RTMDetSepBNHead
 from .rtmdet_ins_head import RTMDetInsHead, RTMDetInsSepBNHead
 from .sabl_retina_head import SABLRetinaHead
@@ -68,5 +69,5 @@ __all__ = [
     'CenterNetUpdateHead', 'RTMDetHead', 'RTMDetSepBNHead', 'CondInstBboxHead',
     'CondInstMaskHead', 'RTMDetInsHead', 'RTMDetInsSepBNHead',
     'BoxInstBboxHead', 'BoxInstMaskHead', 'ConditionalDETRHead', 'DINOHead',
-    'ATSSVLFusionHead', 'DABDETRHead', 'DDQDETRHead', 'GroundingDINOHead'
+    'ATSSVLFusionHead', 'DABDETRHead', 'DDQDETRHead', 'GroundingDINOHead','RPNHead_vitdet'
 ]

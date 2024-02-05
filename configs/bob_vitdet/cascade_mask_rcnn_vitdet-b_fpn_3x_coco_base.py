@@ -34,13 +34,13 @@ model = dict(
         pretrained=None,
         ),
     neck=dict(
-        type='FPN',
+        type='FPN_vitdet',
         in_channels=[768, 768, 768, 768],
         out_channels=256,
         norm_cfg=norm_cfg,
         num_outs=5),
     rpn_head=dict(
-        type='RPNHead',
+        type='RPNHead_vitdet',
         num_convs=2,
         norm_cfg=head_norm_cfg,
         in_channels=256,
@@ -69,7 +69,7 @@ model = dict(
         ),
         bbox_head=[
             dict(
-                type='Shared4Conv1FCBBoxHead',
+                type='Shared4Conv1FCBBoxHead_vitdet',
                 conv_out_channels=256,
                 norm_cfg=dict(type='LN', requires_grad=True),
                 in_channels=256,
@@ -86,7 +86,7 @@ model = dict(
                 loss_bbox=dict(type="SmoothL1Loss", beta=1.0, loss_weight=1.0)
             ),
             dict(
-                type='Shared4Conv1FCBBoxHead',
+                type='Shared4Conv1FCBBoxHead_vitdet',
                 conv_out_channels=256,
                 norm_cfg=dict(type='LN', requires_grad=True),
                 in_channels=256,
@@ -103,7 +103,7 @@ model = dict(
                 loss_bbox=dict(type="SmoothL1Loss", beta=1.0, loss_weight=1.0)
             ),
             dict(
-                type='Shared4Conv1FCBBoxHead',
+                type='Shared4Conv1FCBBoxHead_vitdet',
                 conv_out_channels=256,
                 norm_cfg=dict(type='LN', requires_grad=True),
                 in_channels=256,
@@ -128,7 +128,7 @@ model = dict(
             featmap_strides=[4, 8, 16, 32]
         ),
         mask_head=dict(
-            type='FCNMaskHead',
+            type='FCNMaskHead_vitdet',
             num_convs=4,
             in_channels=256,
             conv_out_channels=256,
