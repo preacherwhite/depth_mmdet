@@ -35,7 +35,7 @@ model = dict(
         ),
     neck=dict(
         type='FPN_vitdet',
-        in_channels=[768, 768, 768, 768],
+        in_channels=[1024, 1024, 1024, 1024],
         out_channels=256,
         norm_cfg=norm_cfg,
         num_outs=5),
