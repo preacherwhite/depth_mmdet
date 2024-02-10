@@ -31,7 +31,7 @@ model = dict(
         attn_drop_rate=0.,
         drop_path_rate=0.1,
         use_abs_pos_emb=True,
-        pretrained=None,
+        pretrained='~/dpt_large_vit_backbone.pt',
         ),
     neck=dict(
         type='FPN_vitdet',
