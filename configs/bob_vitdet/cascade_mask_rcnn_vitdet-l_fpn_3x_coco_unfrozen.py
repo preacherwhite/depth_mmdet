@@ -238,14 +238,18 @@ model = dict(
             mask_thr_binary=0.5)))
 
 data = dict(samples_per_gpu=2)
-
-optimizer = dict(
-    _delete_=True,
-    type="AdamW",
-    lr=0.0001,
-    betas=(0.9, 0.999),
-    weight_decay=0.05,
+optim_wrapper = dict(  # Optimizer wrapper config
+    type='AmpOptimWrapper',  # Optimizer wrapper type, switch to AmpOptimWrapper to enable mixed precision training.
+    optimizer=dict(
+        _delete_=True,
+        type="AdamW",
+        lr=0.0001,
+        betas=(0.9, 0.999),
+        weight_decay=0.05,
+    ),  # Weight decay of SGD
+    clip_grad=None,  # Gradient clip option. Set None to disable gradient clip. Find usage in https://mmengine.readthedocs.io/en/latest/tutorials/optimizer.html
 )
+
 
 lr_config = dict(warmup_iters=1000, step=[27, 33])
 runner = dict(max_epochs=36)
