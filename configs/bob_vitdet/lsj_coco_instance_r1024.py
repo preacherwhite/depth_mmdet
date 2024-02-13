@@ -4,7 +4,7 @@ dataset_type = 'CocoDataset'
 data_root = 'data/coco/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
-image_size = (1024, 1024)
+image_size = (800, 800)
 
 file_client_args = dict(backend='disk')
 # comment out the code below to use different file client
@@ -37,7 +37,7 @@ train_pipeline = [
 ]
 test_pipeline = [
     dict(type='LoadImageFromFile', file_client_args=file_client_args),
-    dict(type='Resize', scale=(1024, 1024), keep_ratio=True),
+    dict(type='Resize', scale=image_size, keep_ratio=True),
     dict(
         type='PackDetInputs',
         meta_keys=('img_id', 'img_path', 'ori_shape', 'img_shape',
