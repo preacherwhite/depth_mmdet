@@ -13,9 +13,9 @@ class DINOv2(nn.Module):
 
     def __init__(self, version='large', freeze=False, load_from=None):
         super().__init__()
-        
+
         if version == 'large':
-            self.dinov2 = torch.hub.load('torchhub/facebookresearch_dinov2_main', 'dinov2_vitl14', source='local', pretrained=False)
+            self.dinov2 = torch.hub.load('~/depth_mmdet/torchhub/facebookresearch_dinov2_main', 'dinov2_vitl14', source='local', pretrained=False)
         else:
             raise NotImplementedError
 

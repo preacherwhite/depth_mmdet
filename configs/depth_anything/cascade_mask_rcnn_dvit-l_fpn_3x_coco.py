@@ -17,12 +17,12 @@ model = dict(
         std=[58.395, 57.12, 57.375],
         bgr_to_rgb=True,
         pad_mask=True,
-        pad_size_divisor=1024),
+        pad_size_divisor=800),
     backbone=dict(
         type='DINOv2',
         version='large',
         freeze=False,
-        load_from='./checkpoints/depth_anything_vitl14.pth'
+        load_from='~/depth_mmdet/checkpoints/depth_anything_vitl14.pth'
         ),
     neck=dict(
         type='FPN_vitdet',
