@@ -227,8 +227,6 @@ model = dict(
             nms=dict(type='nms', iou_threshold=0.5),
             max_per_img=100,
             mask_thr_binary=0.5)))
-
-data = dict(samples_per_gpu=2)
 optim_wrapper = dict(  # Optimizer wrapper config
     type='AmpOptimWrapper',  # Optimizer wrapper type, switch to AmpOptimWrapper to enable mixed precision training.
     optimizer=dict(
