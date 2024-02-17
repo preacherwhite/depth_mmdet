@@ -22,7 +22,7 @@ model = dict(
         type='DINOv2',
         version='large',
         freeze=False,
-        load_from='~/depth_mmdet/checkpoints/depth_anything_vitl14.pth'
+        load_from='/media/home/dhwang/depth_mmdet/checkpoints/depth_anything_vitl14.pth'
         ),
     neck=dict(
         type='FPN_vitdet',
