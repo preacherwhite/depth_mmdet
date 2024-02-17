@@ -4,7 +4,7 @@ dataset_type = 'CocoDataset'
 data_root = '/media/staging1/dhwang/data/coco2017/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
-image_size = (800, 800)
+image_size = (812, 812)
 
 file_client_args = dict(backend='disk')
 # comment out the code below to use different file client

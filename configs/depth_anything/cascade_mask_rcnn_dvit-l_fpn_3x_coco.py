@@ -17,7 +17,7 @@ model = dict(
         std=[58.395, 57.12, 57.375],
         bgr_to_rgb=True,
         pad_mask=True,
-        pad_size_divisor=800),
+        pad_size_divisor=812),
     backbone=dict(
         type='DINOv2',
         version='large',
@@ -244,6 +244,6 @@ optim_wrapper = dict(  # Optimizer wrapper config
 
 lr_config = dict(warmup_iters=1000, step=[27, 33])
 runner = dict(max_epochs=36)
-
+find_unused_parameters = True
 # you need to set mode='dynamic' if you are using pytorch<=1.5.0
 fp16 = dict(loss_scale=dict(init_scale=512))
