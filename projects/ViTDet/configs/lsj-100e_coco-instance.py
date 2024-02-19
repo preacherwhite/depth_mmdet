@@ -4,8 +4,8 @@ _base_ = [
 
 # dataset settings
 dataset_type = 'CocoDataset'
-data_root = 'data/coco/'
-image_size = (1024, 1024)
+data_root = '/media/staging1/dhwang/coco2017'
+image_size = (512, 512)
 
 backend_args = None
 
@@ -41,7 +41,7 @@ test_pipeline = [
 ]
 
 train_dataloader = dict(
-    batch_size=2,
+    batch_size=4,
     num_workers=8,
     persistent_workers=True,
     sampler=dict(type='DefaultSampler', shuffle=True),
