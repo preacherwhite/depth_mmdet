@@ -24,9 +24,14 @@ def get_layer_id_for_vit(var_name, max_layer_id):
     if var_name.startswith('backbone'):
         if 'patch_embed' in var_name or 'pos_embed' in var_name:
             return 0
-        elif '.blocks.' in var_name:
-            layer_id = int(var_name.split('.')[2]) + 1
-            return layer_id
+        elif 'blocks' in var_name:
+            parts = var_name.split('.')
+            block_index = parts.index('blocks') + 1  # Find index of 'blocks' and get the next element
+            if block_index < len(parts):
+                layer_id = int(parts[block_index]) + 1
+                return layer_id
+            else:
+                return max_layer_id + 1  # Return default if 'blocks' is the last element
         else:
             return max_layer_id + 1
     else:
