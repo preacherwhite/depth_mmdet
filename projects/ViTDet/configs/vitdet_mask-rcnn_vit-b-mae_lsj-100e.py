@@ -40,7 +40,7 @@ model = dict(
         ],
         use_rel_pos=True,
         init_cfg=dict(
-            type='Pretrained', checkpoint='mae_pretrain_vit_base.pth')),
+            type='Pretrained', checkpoint='/media/home/dhwang/depth_mmdet/checkpoints/mae_pretrain_vit_base.pth')),
     neck=dict(
         _delete_=True,
         type='SimpleFPN',
