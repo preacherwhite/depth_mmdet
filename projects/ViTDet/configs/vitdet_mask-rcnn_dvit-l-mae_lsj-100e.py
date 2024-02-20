@@ -20,8 +20,7 @@ model = dict(
         load_from='/media/home/dhwang/depth_mmdet/checkpoints/depth_anything_vitl14.pth'
     ),
     neck=dict(
-        _delete_=True,
-        type='SimpleFPN',
+        type='FPN',
         backbone_channel=1024,
         in_channels=[256, 512, 1024, 1024],
         out_channels=256,
