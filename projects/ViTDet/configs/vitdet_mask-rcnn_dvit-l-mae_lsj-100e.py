@@ -21,7 +21,7 @@ model = dict(
     ),
     neck=dict(
         type='FPN',
-        in_channels=[256, 512, 1024, 1024],
+        in_channels=[1024, 1024, 1024, 1024],
         out_channels=256,
         num_outs=5,
         norm_cfg=norm_cfg),
