@@ -45,4 +45,4 @@ class DINOv2(nn.Module):
             feature = feature.permute(0, 2, 1).reshape(B, C, h // 14, w // 14).contiguous()
             outs.append(feature)
         
-        return outs
+        return torch.tensor(outs)
