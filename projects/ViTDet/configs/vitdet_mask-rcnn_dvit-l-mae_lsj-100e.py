@@ -12,7 +12,7 @@ batch_augments = [
 
 # model settings
 model = dict(
-    data_preprocessor=dict(pad_size_divisor=32, batch_augments=batch_augments),
+    data_preprocessor=dict(pad_size_divisor=28, batch_augments=batch_augments),
     backbone=dict(
         type='DINOv2',
         version='large',
