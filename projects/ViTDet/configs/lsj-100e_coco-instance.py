@@ -5,7 +5,7 @@ _base_ = [
 # dataset settings
 dataset_type = 'CocoDataset'
 data_root = '/media/staging1/dhwang/coco2017/'
-image_size = (1022, 1022)
+image_size = (518, 518)
 
 backend_args = None
 
