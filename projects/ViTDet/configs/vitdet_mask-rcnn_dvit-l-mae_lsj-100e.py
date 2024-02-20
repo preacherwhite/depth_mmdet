@@ -34,3 +34,4 @@ model = dict(
         mask_head=dict(norm_cfg=norm_cfg)))
 
 custom_hooks = [dict(type='Fp16CompresssionHook')]
+find_unused_parameters = True
