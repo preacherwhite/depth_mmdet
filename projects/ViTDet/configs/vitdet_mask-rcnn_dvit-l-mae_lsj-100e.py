@@ -1,5 +1,5 @@
 _base_ = [
-    '/media/home/dhwang/depth_mmdet/configs/_base_/models/mask-rcnn_r50_fpn.py',
+    '/media/home/dhwang/depth_mmdet/configs/_base_/models/mask-rcnn_r50_fpn_no_backbone.py',
     './lsj-100e_coco-instance.py',
 ]
 backbone_norm_cfg = dict(type='LN', requires_grad=True)
