@@ -16,7 +16,7 @@ data_root = '/media/staging1/dhwang/coco2017/'
 #         'data/': 's3://openmmlab/datasets/detection/'
 #     }))
 backend_args = None
-image_size = (1022,1022)
+image_size = (518,518)
 train_pipeline = [
     dict(type='LoadImageFromFile', backend_args=backend_args),
     dict(type='LoadAnnotations', with_bbox=True, with_mask=True),
@@ -35,7 +35,7 @@ test_pipeline = [
                    'scale_factor'))
 ]
 train_dataloader = dict(
-    batch_size=2,
+    batch_size=4,
     num_workers=2,
     persistent_workers=True,
     sampler=dict(type='DefaultSampler', shuffle=True),
