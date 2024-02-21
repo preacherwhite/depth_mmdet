@@ -5,6 +5,13 @@ _base_ = [
 ]
 model = dict(
     type='MaskRCNN',
+    data_preprocessor=dict(
+        type='DetDataPreprocessor',
+        mean=[123.675, 116.28, 103.53],
+        std=[58.395, 57.12, 57.375],
+        bgr_to_rgb=True,
+        pad_mask=True,
+        pad_size_divisor=28),
     backbone=dict(
         type='DINOv2',
         version='large',
