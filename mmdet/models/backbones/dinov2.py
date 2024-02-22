@@ -15,6 +15,9 @@ class DINOv2(nn.Module):
         super().__init__()
         if version == 'large':
             self.dinov2 = torch.hub.load('/media/home/dhwang/depth_mmdet/torchhub/facebookresearch_dinov2_main', 'dinov2_vitl14', source='local', pretrained=False)
+        elif version == 'base':
+            self.dinov2 = torch.hub.load('/media/home/dhwang/depth_mmdet/torchhub/facebookresearch_dinov2_main',
+                                         'dinov2_vitb14', source='local', pretrained=False)
         elif version == 'imagenet':
             self.dinov2 = torch.hub.load('facebookresearch/dinov2', 'dinov2_vitl14')
         else:
