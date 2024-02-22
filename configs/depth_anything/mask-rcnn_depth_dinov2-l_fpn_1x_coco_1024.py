@@ -16,9 +16,9 @@ model = dict(
         type='DINOv2',
         version='base',
         freeze=False,
-        load_from='/media/home/dhwang/depth_mmdet/checkpoints/depth_anything_vitlb4.pth'
+        load_from='/media/home/dhwang/depth_mmdet/checkpoints/depth_anything_vitlb14.pth'
     ),
-    neck=dict(in_channels=[1024, 1024, 1024, 1024]))
+    neck=dict(in_channels=[768, 768, 768, 768]))
 
 max_epochs = 12
 train_cfg = dict(max_epochs=max_epochs)
