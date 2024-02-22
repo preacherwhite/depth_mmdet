@@ -43,16 +43,6 @@ param_scheduler = [
         gamma=0.1)
 ]
 
-# optimizer
-optim_wrapper = dict(
-    type='OptimWrapper',
-    optimizer=dict(
-        _delete_=True,
-        type='AdamW',
-        lr=1e-3,
-        betas=(0.9, 0.999),
-        weight_decay=0.05))
-
 optim_wrapper = dict(
     type='AmpOptimWrapper',
     constructor='LayerDecayOptimizerConstructor',
@@ -62,6 +52,7 @@ optim_wrapper = dict(
         'num_layers': 24,
     },
     optimizer=dict(
+        _delete_=True,
         type='AdamW',
         lr=0.0001,
         betas=(0.9, 0.999),
