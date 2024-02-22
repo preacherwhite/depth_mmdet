@@ -3,6 +3,12 @@ _base_ = [
     './coco_instance_dvit.py',
     '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
 ]
+custom_imports = dict(imports=['projects.ViTDet.vitdet'])
+image_size = (518,518)
+batch_augments = [
+    dict(type='BatchFixedSizePad', size=image_size, pad_mask=True)
+]
+
 model = dict(
     type='MaskRCNN',
     data_preprocessor=dict(
@@ -46,3 +52,18 @@ optim_wrapper = dict(
         lr=1e-3,
         betas=(0.9, 0.999),
         weight_decay=0.05))
+
+optim_wrapper = dict(
+    type='AmpOptimWrapper',
+    constructor='LayerDecayOptimizerConstructor',
+    paramwise_cfg={
+        'decay_rate': 0.7,
+        'decay_type': 'layer_wise',
+        'num_layers': 24,
+    },
+    optimizer=dict(
+        type='AdamW',
+        lr=0.0001,
+        betas=(0.9, 0.999),
+        weight_decay=0.05,
+    ))
