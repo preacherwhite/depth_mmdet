@@ -14,9 +14,9 @@ model = dict(
         pad_size_divisor=28),
     backbone=dict(
         type='DINOv2',
-        version='large',
+        version='base',
         freeze=False,
-        load_from='/media/home/dhwang/depth_mmdet/checkpoints/depth_anything_vitl14.pth'
+        load_from='/media/home/dhwang/depth_mmdet/checkpoints/depth_anything_vitlb4.pth'
     ),
     neck=dict(in_channels=[1024, 1024, 1024, 1024]))
 
