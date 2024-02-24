@@ -5,7 +5,7 @@ _base_ = [
 # dataset settings
 dataset_type = 'CocoDataset'
 data_root = '/media/staging1/dhwang/coco2017/'
-image_size = (518, 518)
+image_size = (700, 700)
 
 backend_args = None
 
@@ -41,7 +41,7 @@ test_pipeline = [
 ]
 
 train_dataloader = dict(
-    batch_size=4,
+    batch_size=2,
     num_workers=8,
     persistent_workers=True,
     sampler=dict(type='DefaultSampler', shuffle=True),
@@ -85,7 +85,7 @@ optim_wrapper = dict(
     },
     optimizer=dict(
         type='AdamW',
-        lr=1e-7,
+        lr=1e-4,
         betas=(0.9, 0.999),
         weight_decay=0.1,
     ))
@@ -124,7 +124,6 @@ default_hooks = dict(
         save_last=True,
         interval=interval,
         max_keep_ckpts=5))
-
 vis_backends = [
     dict(type='LocalVisBackend'),
     dict(type='TensorboardVisBackend')
@@ -133,4 +132,4 @@ visualizer = dict(
     type='DetLocalVisualizer', vis_backends=vis_backends, name='visualizer')
 log_processor = dict(type='LogProcessor', window_size=50, by_epoch=False)
 
-auto_scale_lr = dict(base_batch_size=64)
+auto_scale_lr = dict(enable=True,base_batch_size=64)
