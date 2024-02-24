@@ -1,6 +1,6 @@
 _base_ = [
     '../../../configs/_base_/models/mask-rcnn_r50_fpn.py',
-    './lsj-100e_coco-instance-default.py',
+    './lsj-100e_coco-instance.py',
 ]
 
 custom_imports = dict(imports=['projects.ViTDet.vitdet'])

@@ -58,3 +58,13 @@ optim_wrapper = dict(
         betas=(0.9, 0.999),
         weight_decay=0.05,
     ))
+
+vis_backends = [
+    dict(type='LocalVisBackend'),
+    dict(type='TensorboardVisBackend')
+]
+visualizer = dict(
+    type='DetLocalVisualizer', vis_backends=vis_backends, name='visualizer')
+log_processor = dict(type='LogProcessor', window_size=50, by_epoch=False)
+
+auto_scale_lr = dict(base_batch_size=64)

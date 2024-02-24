@@ -1,11 +1,11 @@
 _base_ = [
-    '/media/home/dhwang/depth_mmdet/configs/_base_/models/mask-rcnn_r50_fpn_no_backbone.py',
-    './lsj-100e_coco-instance.py',
+    '/media/home/dhwang/mmdetection/configs/_base_/models/mask-rcnn_r50_fpn.py',
+    './lsj-100e_coco-instance-dvit.py',
 ]
 custom_imports = dict(imports=['projects.ViTDet.vitdet'])
 backbone_norm_cfg = dict(type='LN', requires_grad=True)
 norm_cfg = dict(type='LN2d', requires_grad=True)
-image_size = (518, 518)
+image_size = (700, 700)
 batch_augments = [
     dict(type='BatchFixedSizePad', size=image_size, pad_mask=True)
 ]
@@ -14,14 +14,16 @@ batch_augments = [
 model = dict(
     data_preprocessor=dict(pad_size_divisor=28, batch_augments=batch_augments),
     backbone=dict(
+        _delete_ = True,
         type='DINOv2',
-        version='imagenet',
-        freeze=True,
-        load_from='/media/home/dhwang/depth_mmdet/checkpoints/depth_anything_vitl14.pth'
+        version='native',
+        freeze=False,
     ),
     neck=dict(
-        type='FPN',
-        in_channels=[1024, 1024, 1024, 1024],
+        _delete_=True,
+        type='SimpleFPN',
+        backbone_channel=1024,
+        in_channels=[256, 512, 1024, 1024],
         out_channels=256,
         num_outs=5,
         norm_cfg=norm_cfg),
