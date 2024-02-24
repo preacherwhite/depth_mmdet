@@ -1,5 +1,5 @@
 _base_ = [
-    '/media/home/dhwang/mmdetection/configs/_base_/models/mask-rcnn_r50_fpn.py',
+    '/media/home/dhwang/depth_mmdet/configs/_base_/models/mask-rcnn_r50_fpn.py',
     './lsj-100e_coco-instance-dvit.py',
 ]
 custom_imports = dict(imports=['projects.ViTDet.vitdet'])
