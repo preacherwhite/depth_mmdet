@@ -1,6 +1,6 @@
 _base_ = [
     '/media/home/dhwang/depth_mmdet/configs/_base_/models/mask-rcnn_r50_fpn.py',
-    './lsj-100e_coco-instance-dvit-4.py',
+    './lsj-100e_coco-instance-dvit-frozen.py',
 ]
 custom_imports = dict(imports=['projects.ViTDet.vitdet'])
 backbone_norm_cfg = dict(type='LN', requires_grad=True)
