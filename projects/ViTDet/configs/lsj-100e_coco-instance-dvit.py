@@ -5,7 +5,7 @@ _base_ = [
 # dataset settings
 dataset_type = 'CocoDataset'
 data_root = '/media/staging1/dhwang/coco2017/'
-image_size = (700, 700)
+image_size = (868, 868)
 
 backend_args = None
 
@@ -41,7 +41,7 @@ test_pipeline = [
 ]
 
 train_dataloader = dict(
-    batch_size=2,
+    batch_size=1,
     num_workers=8,
     persistent_workers=True,
     sampler=dict(type='DefaultSampler', shuffle=True),
@@ -85,7 +85,7 @@ optim_wrapper = dict(
     },
     optimizer=dict(
         type='AdamW',
-        lr=1e-4,
+        lr=1e-3,
         betas=(0.9, 0.999),
         weight_decay=0.1,
     ))

@@ -5,7 +5,7 @@ _base_ = [
 custom_imports = dict(imports=['projects.ViTDet.vitdet'])
 backbone_norm_cfg = dict(type='LN', requires_grad=True)
 norm_cfg = dict(type='LN2d', requires_grad=True)
-image_size = (700, 700)
+image_size = (868, 868)
 batch_augments = [
     dict(type='BatchFixedSizePad', size=image_size, pad_mask=True)
 ]
