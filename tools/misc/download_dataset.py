@@ -203,6 +203,10 @@ def main():
             'https://bvisionweb1.cs.unc.edu/licheng/referit/data/refcoco+.zip',
             # refcocog annotations
             'https://bvisionweb1.cs.unc.edu/licheng/referit/data/refcocog.zip'
+        ],
+        cityscapes=[
+            'https://www.cityscapes-dataset.com/file-handling/?packageID=3',
+            'https://www.cityscapes-dataset.com/file-handling/?packageID=1'
         ])
     url = data2url.get(args.dataset_name, None)
     if url is None:

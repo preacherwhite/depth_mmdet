@@ -1,6 +1,6 @@
 _base_ = [
     '/media/home/dhwang/depth_mmdet/configs/_base_/models/mask-rcnn_r50_fpn.py',
-    './lsj-100e_lvis-instance-dvit.py',
+    './lsj-100e_city-instance-dvit.py',
 ]
 custom_imports = dict(imports=['projects.ViTDet.vitdet'])
 backbone_norm_cfg = dict(type='LN', requires_grad=True)
@@ -16,8 +16,9 @@ model = dict(
     backbone=dict(
         _delete_ = True,
         type='DINOv2',
-        version='native',
+        version='large',
         freeze=False,
+        load_from='/media/home/dhwang/depth_mmdet/checkpoints/depth_anything_vitl14.pth'
     ),
     neck=dict(
         _delete_=True,
@@ -33,12 +34,11 @@ model = dict(
             type='Shared4Conv1FCBBoxHead',
             conv_out_channels=256,
             norm_cfg=norm_cfg,
-            num_classes=1203),
-        mask_head=dict(
-            norm_cfg=norm_cfg,
-            num_classes=1203)))
+            num_classes=8,
+            loss_bbox=dict(type='SmoothL1Loss', beta=1.0, loss_weight=1.0)),
+        mask_head=dict(num_classes=8)    
+        ))
 
 custom_hooks = [dict(type='Fp16CompresssionHook')]
 find_unused_parameters = True
-resume = True
-load_from = '/media/staging2/dhwang/work_dir/dvit_700_native_1e-3_lvis/iter_60000.pth'
+#resume=True
